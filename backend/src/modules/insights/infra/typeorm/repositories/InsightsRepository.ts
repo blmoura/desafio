@@ -1,7 +1,7 @@
-import { IInsightsRepository } from '@/modules/insights/repositories/IInsightsRepository'
-import { Insight } from '@/modules/insights/infra/typeorm/entities/Insight'
+import { IInsightsRepository } from '../../../repositories/IInsightsRepository'
+import { Insight } from '../entities/Insight'
 import { getRepository, Repository } from 'typeorm'
-import { ICreateInsightDTO } from '@/modules/insights/dtos/ICreateInsightDTO'
+import { ICreateInsightDTO } from '../../../dtos/ICreateInsightDTO'
 
 class InsightsRepository implements IInsightsRepository {
   private readonly ormRepository: Repository<Insight>
