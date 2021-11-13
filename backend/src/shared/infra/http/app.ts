@@ -1,7 +1,11 @@
 import 'reflect-metadata'
-import '@/shared/infra/typeorm'
+import '../typeorm'
 import express from 'express'
+import { router } from './routes'
 
 const app = express()
+app.use(express.json())
+
+app.use(router)
 
 export { app }
