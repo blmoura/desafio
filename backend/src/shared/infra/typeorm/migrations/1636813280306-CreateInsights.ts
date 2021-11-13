@@ -12,16 +12,16 @@ export class CreateInsights1636813280306 implements MigrationInterface {
             isPrimary: true
           },
           {
-            name: 'texto',
+            name: 'text',
             type: 'varchar'
           },
           {
-            name: 'data_criacao',
+            name: 'created_at',
             type: 'timestamp',
             default: 'now()'
           },
           {
-            name: 'data_modificacao',
+            name: 'updated_at',
             type: 'timestamp',
             default: 'now()'
           }

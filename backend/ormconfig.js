@@ -5,7 +5,7 @@ module.exports = {
   username: 'postgres',
   password: 'docker',
   database: 'database_insights',
-  entities: ['src/modules/**/entities/*.ts'],
+  entities: ['src/modules/**/infra/typeorm/entities/*.ts'],
   migrations: [
     'src/shared/infra/typeorm/migrations/*.ts'
   ],

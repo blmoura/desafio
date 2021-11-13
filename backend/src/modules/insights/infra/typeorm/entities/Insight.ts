@@ -1,17 +1,18 @@
 import { v4 as uuid } from 'uuid'
-import { Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm'
 
+@Entity('insights')
 class Insight {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn()
   id?: string
 
-  @Column('texto')
+  @Column()
   text: string
 
-  @CreateDateColumn('data_criacao')
+  @CreateDateColumn()
   created_at?: Date
 
-  @UpdateDateColumn('data_modificacao')
+  @UpdateDateColumn()
   updated_at?: Date
 
   constructor () {
