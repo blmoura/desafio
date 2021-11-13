@@ -13,7 +13,7 @@
     "url": "https://github.com/blmoura"
   },
   "scripts": {
-    "dev": "ts-node-dev --inspect --poll --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "dev": "ts-node-dev --inspect --poll --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix"
   },
