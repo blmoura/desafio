@@ -1,9 +1,9 @@
 import { ICreateTagDTO } from 'modules/insights/dtos/ICreateTagDTO'
-import { ITagRepository } from 'modules/insights/repositories/ITagRepository'
+import { ITagsRepository } from 'modules/insights/repositories/ITagsRepository'
 import { getRepository, Repository } from 'typeorm'
 import { Tag } from '../entities/Tag'
 
-class TagsRepository implements ITagRepository {
+class TagsRepository implements ITagsRepository {
   private readonly ormRepository: Repository<Tag>
   constructor () {
     this.ormRepository = getRepository(Tag)

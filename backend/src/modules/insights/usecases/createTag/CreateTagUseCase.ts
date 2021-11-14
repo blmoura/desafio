@@ -1,4 +1,4 @@
-import { ITagRepository } from 'modules/insights/repositories/ITagRepository'
+import { ITagsRepository } from 'modules/insights/repositories/ITagsRepository'
 import { Tag } from '../../infra/typeorm/entities/Tag'
 
 interface IRequest {
@@ -6,10 +6,9 @@ interface IRequest {
 }
 
 class CreateTagUseCase {
-  constructor (private readonly tagRepository: ITagRepository) {}
+  constructor (private readonly tagRepository: ITagsRepository) {}
 
   async execute ({ name }: IRequest): Promise<Tag> {
-    console.log(name)
     const tagAlreadyExists = await this.tagRepository.findByName(name)
 
     if (tagAlreadyExists) {
