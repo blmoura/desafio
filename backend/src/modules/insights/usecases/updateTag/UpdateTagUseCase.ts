@@ -16,7 +16,14 @@ class UpdateTagUseCase {
       throw new Error('Tag not found')
     }
 
-    tag.name = name
+    if (name) {
+      tag.name = name
+    }
+
+    const nameAlreadyExists = await this.tagsRepository.findByName(name)
+    if (nameAlreadyExists) {
+      throw new Error('Name already exists')
+    }
 
     await this.tagsRepository.update(tag)
 
