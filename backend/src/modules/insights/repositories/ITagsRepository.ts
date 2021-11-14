@@ -7,4 +7,5 @@ export interface ITagsRepository {
   listAll: () => Promise<Tag[]>
   findById: (tagId: string) => Promise<Tag>
   update: ({ id, name, created_at, updated_at }: Tag) => Promise<Tag>
+  delete: (tagId: string) => Promise<void>
 }
