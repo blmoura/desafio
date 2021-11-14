@@ -11,7 +11,9 @@ class UpdateInsightUseCase {
       throw new Error('Insight not found')
     }
 
-    insight.text = text
+    if (text) {
+      insight.text = text
+    }
 
     await this.insightRepository.update(insight)
     return insight
