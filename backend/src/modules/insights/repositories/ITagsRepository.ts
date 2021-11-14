@@ -5,4 +5,6 @@ export interface ITagsRepository {
   create: ({ name }: ICreateTagDTO) => Promise<Tag>
   findByName: (name: string) => Promise<Tag>
   listAll: () => Promise<Tag[]>
+  findById: (tagId: string) => Promise<Tag>
+  update: ({ id, name, created_at, updated_at }: Tag) => Promise<Tag>
 }
