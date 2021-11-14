@@ -9,10 +9,6 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "src",
-    "paths": {
-      "@/*": ["*"]
-    },
     "strict": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
