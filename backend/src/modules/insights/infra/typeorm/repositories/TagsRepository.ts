@@ -1,5 +1,5 @@
-import { ICreateTagDTO } from 'modules/insights/dtos/ICreateTagDTO'
-import { ITagsRepository } from 'modules/insights/repositories/ITagsRepository'
+import { ICreateTagDTO } from '../../../dtos/ICreateTagDTO'
+import { ITagsRepository } from '../../../repositories/ITagsRepository'
 import { getRepository, Repository } from 'typeorm'
 import { Tag } from '../entities/Tag'
 
@@ -7,6 +7,11 @@ class TagsRepository implements ITagsRepository {
   private readonly ormRepository: Repository<Tag>
   constructor () {
     this.ormRepository = getRepository(Tag)
+  }
+
+  async listAll (): Promise<Tag[]> {
+    const tags = await this.ormRepository.find()
+    return tags
   }
 
   async findByName (name: string): Promise<Tag> {
