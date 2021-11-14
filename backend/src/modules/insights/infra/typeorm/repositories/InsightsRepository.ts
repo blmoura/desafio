@@ -10,6 +10,10 @@ class InsightsRepository implements IInsightsRepository {
     this.ormRepository = getRepository(Insight)
   }
 
+  async delete (id: string): Promise<void> {
+    await this.ormRepository.delete(id)
+  }
+
   async update ({ id, text, created_at, updated_at }: Insight): Promise<Insight> {
     const insight = await this.ormRepository.findOne(id)
     Object.assign(insight, { text, created_at, updated_at })
