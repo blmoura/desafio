@@ -1,3 +1,4 @@
+import { AppError } from '../../../../shared/errors/AppError'
 import { ITagsRepository } from '../../repositories/ITagsRepository'
 
 class DeleteTagUseCase {
@@ -7,7 +8,7 @@ class DeleteTagUseCase {
     const tagAlreadyExists = await this.tagsRepository.findById(id)
 
     if (!tagAlreadyExists) {
-      throw new Error('Tag not found')
+      throw new AppError('Tag not found')
     }
 
     await this.tagsRepository.delete(id)

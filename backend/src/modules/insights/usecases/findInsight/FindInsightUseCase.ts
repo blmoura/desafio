@@ -1,3 +1,4 @@
+import { AppError } from '../../../../shared/errors/AppError'
 import { Insight } from '../../infra/typeorm/entities/Insight'
 import { IInsightsRepository } from '../../repositories/IInsightsRepository'
 
@@ -8,7 +9,7 @@ class FindInsightUseCase {
     const insight = await this.insightRepository.findById(id)
 
     if (!insight) {
-      throw new Error('Insight not found')
+      throw new AppError('Insight not found')
     }
 
     return insight

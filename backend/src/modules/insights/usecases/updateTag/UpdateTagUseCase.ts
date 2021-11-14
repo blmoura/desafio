@@ -1,5 +1,6 @@
 import { ITagsRepository } from '../../repositories/ITagsRepository'
 import { Tag } from '../../infra/typeorm/entities/Tag'
+import { AppError } from '../../../../shared/errors/AppError'
 
 interface IRequest {
   tagId: string
@@ -13,7 +14,7 @@ class UpdateTagUseCase {
     const tag = await this.tagsRepository.findById(tagId)
 
     if (!tag) {
-      throw new Error('Tag not found')
+      throw new AppError('Tag not found')
     }
 
     if (name) {
@@ -22,7 +23,7 @@ class UpdateTagUseCase {
 
     const nameAlreadyExists = await this.tagsRepository.findByName(name)
     if (nameAlreadyExists) {
-      throw new Error('Name already exists')
+      throw new AppError('Name already exists')
     }
 
     await this.tagsRepository.update(tag)

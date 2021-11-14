@@ -1,3 +1,4 @@
+import { AppError } from '../../../../shared/errors/AppError'
 import { IUpdateInsightDTO } from '../../dtos/IUpdateInsightDTO'
 import { Insight } from '../../infra/typeorm/entities/Insight'
 import { IInsightsRepository } from '../../repositories/IInsightsRepository'
@@ -8,7 +9,7 @@ class UpdateInsightUseCase {
   async execute ({ id, text }: IUpdateInsightDTO): Promise<Insight> {
     const insight = await this.insightRepository.findById(id)
     if (!insight) {
-      throw new Error('Insight not found')
+      throw new AppError('Insight not found')
     }
 
     if (text) {
