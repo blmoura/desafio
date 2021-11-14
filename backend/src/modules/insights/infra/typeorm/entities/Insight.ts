@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid'
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm'
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryColumn, UpdateDateColumn } from 'typeorm'
+import { Tag } from './Tag'
 
 @Entity('insights')
 class Insight {
@@ -8,6 +9,14 @@ class Insight {
 
   @Column()
   text: string
+
+  @ManyToMany(type => Tag, { eager: true })
+  @JoinTable({
+    name: 'insights_tags',
+    joinColumns: [{ name: 'insight_id' }],
+    inverseJoinColumns: [{ name: 'tag_id' }]
+  })
+  tags?: Tag[]
 
   @CreateDateColumn()
   created_at?: Date

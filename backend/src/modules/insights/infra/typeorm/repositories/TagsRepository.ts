@@ -9,6 +9,11 @@ class TagsRepository implements ITagsRepository {
     this.ormRepository = getRepository(Tag)
   }
 
+  async findByIds (ids: string[]): Promise<Tag[]> {
+    const tags = await this.ormRepository.findByIds(ids)
+    return tags
+  }
+
   async delete (tagId: string): Promise<void> {
     await this.ormRepository.delete(tagId)
   }

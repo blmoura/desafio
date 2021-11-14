@@ -14,9 +14,9 @@ class InsightsRepository implements IInsightsRepository {
     await this.ormRepository.delete(id)
   }
 
-  async update ({ id, text, created_at, updated_at }: Insight): Promise<Insight> {
+  async update ({ id, text, tags, created_at, updated_at }: Insight): Promise<Insight> {
     const insight = await this.ormRepository.findOne(id)
-    Object.assign(insight, { text, created_at, updated_at })
+    Object.assign(insight, { text, tags, created_at, updated_at })
     await this.ormRepository.save(insight)
     return insight
   }
@@ -31,8 +31,8 @@ class InsightsRepository implements IInsightsRepository {
     return insights
   }
 
-  async create ({ text }: ICreateInsightDTO): Promise<Insight> {
-    const insight = this.ormRepository.create({ text })
+  async create ({ text, tags }: ICreateInsightDTO): Promise<Insight> {
+    const insight = this.ormRepository.create({ text, tags })
     await this.ormRepository.save(insight)
     return insight
   }
