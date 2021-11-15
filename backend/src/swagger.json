@@ -1,0 +1,137 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Insight Documentation",
+    "description": "API de conteudos esportivos",
+    "version": "1.0.0",
+    "contact": {
+      "email": "brunomoura.blm@gmail.com"
+    }
+  },
+  "paths": {
+    "/tags": {
+      "post": {
+        "tags": ["Tags"],
+        "summary": "Criação de tags",
+        "description": "API para criação de tags",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "examples": {
+                  "name": "Tag de exemplo"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sucesso"
+          },
+          "400": {
+            "description": "Tag já existe"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Tags"],
+        "summary": "Listagem de todas as tags",
+        "description": "API para listagem de todas as tags",
+        "responses": {
+          "200": {
+            "description": "Sucesso"
+          }
+        }
+      }
+    },
+    "/tags/{id}": {
+      "get": {
+        "tags": ["Tags"],
+        "summary": "Buscar tag por ID",
+        "description": "API para busca de uma tag por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID de uma tag especifica",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Tags"],
+        "summary": "Deletar tag por id",
+        "description": "API para deletar uma tag especifica",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID de uma tag especifica",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Tags"],
+        "summary": "Atualizar tag por id",
+        "description": "API para atualizar uma tag especifica",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID de uma tag especifica",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sucesso"
+          }
+        }
+      }
+    }
+  }
+}
