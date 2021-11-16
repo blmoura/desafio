@@ -132,6 +132,124 @@
           }
         }
       }
+    },
+    "/insights": {
+      "post": {
+        "tags": ["Insights"],
+        "summary": "Criação de Insights",
+        "description": "APi para criação de insights",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "description": "Campo responsavel por relacionar tags a insights",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": ["text"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Criado com sucesso"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Insights"],
+        "summary": "Buscar todos os insights",
+        "description": "API para buscar todos os insights",
+        "responses": {
+          "200": {
+            "description": "Sucesso"
+          }
+        }
+      }
+    },
+    "/insights/{id}": {
+      "get": {
+        "tags": ["Insights"],
+        "summary": "Buscar insight por ID",
+        "description": "API para buscar um insight por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID de um insight especifico",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Insights"],
+        "summary": "Deletar insight por id",
+        "description": "API para deletar um insight especifico",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID de um insight especifico",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Insights"],
+        "summary": "Atualizar insight por id",
+        "description": "API para atualizar um insight especifico",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sucesso"
+          }
+        }
+      }
     }
   }
 }
