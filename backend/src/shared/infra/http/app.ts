@@ -1,6 +1,7 @@
 import 'reflect-metadata'
 import '../typeorm'
 import 'express-async-errors'
+import cors from 'cors'
 
 import swaggerUI from 'swagger-ui-express'
 import express, { NextFunction, Request, Response } from 'express'
@@ -10,6 +11,12 @@ import { router } from './routes'
 import { AppError } from '../../errors/AppError'
 
 const app = express()
+const origins = ['http://localhost:3000', 'http://localhost:8080']
+const optionsCors: cors.CorsOptions = {
+  origin: origins
+}
+
+app.use(cors(optionsCors))
 app.use(express.json())
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerFile))
