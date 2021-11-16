@@ -34,6 +34,10 @@ export const GlobalStyles = createGlobalStyle`
     cursor: pointer;
   }
 
+  li {
+    list-style: none;
+  }
+
   [disabled] {
     opacity: 0.6;
     cursor: not-allowed;

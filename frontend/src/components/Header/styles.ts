@@ -13,7 +13,7 @@ export const Content = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 1.5rem 1rem 10rem;
+  padding: 1.5rem 1rem 12rem;
   
   .container-logo {
     margin-top: 1rem;
@@ -25,35 +25,6 @@ export const Content = styled.div`
 
     img {
       width: 50px;
-    }
-  }
-
-  .container-perfil {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: var(--text-header); 
-    position: relative;
-
-    p {
-      margin-top: 1rem;
-      text-align: center;
-
-      strong {
-        display: block;
-        font-size: 1.75rem;
-        font-style: italic;
-        font-weight: 400;
-      }
-    }
-
-    &::after {
-      content: '';
-      width: 50px;
-      height: 2px;
-      border: 0.5rem;
-      background-color: var(--pink);
-      margin-top: 3rem;
     }
   }
 
