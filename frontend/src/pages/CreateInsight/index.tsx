@@ -1,18 +1,37 @@
-import { Link } from 'react-router-dom'
-import Select from 'react-select'
+import { FormEvent, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { api } from '../../api'
 
 import arrowBackImg from '../../assets/arrow_back_24dp.svg'
+import { TextArea } from '../../components/Form/Textarea'
+import { Loading } from '../../components/Loading'
 import { Container, ContentForm } from './styles'
 
 export const CreateInsight = () => {
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ]
+  const [textInsight, setTextInsight] = useState('') 
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
+  
+  
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
 
+    setLoading(true)
+
+    api.post('/insights', { text: textInsight })
+      .then(response => {
+        if(response.status === 201) {
+          setTimeout(() => {
+            setLoading(false)
+            navigate('/')
+          }, 1500)
+        }
+      })
+  }
+  
   return (
     <Container>
+      {loading && <Loading />}
       <div className="container-header">
         <h1>Criar <span>Insight</span></h1>
         <Link to="/">
@@ -20,21 +39,13 @@ export const CreateInsight = () => {
           <img src={arrowBackImg} alt="Voltar" />
         </Link>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <ContentForm>
-          <div className="group-input">
-            <label htmlFor="textarea-insight">Insight</label>
-            <textarea id="textarea-insight" placeholder="Escreva aqui o seu insight…"></textarea>
-            <span className="quantity-characters">limite de caracteres: 400</span>
-          </div>
-          <div className="group-input">
-            <label htmlFor="select-tag"></label>
-            <Select 
-              id="select-tag"
-              options={options} 
-              isMulti={true}
-            />
-          </div>          
+          <TextArea 
+            id="insight-textarea"
+            value={textInsight}
+            onChange={({ target }: any) => setTextInsight(target.value)}
+          />      
         </ContentForm>
         <button type="submit">Publicar</button>
       </form>

@@ -5,7 +5,6 @@ import perfilImg from '../../assets/perfil.png'
 import { Container, Content } from './styles'
 import { PerfilUser } from '../PerfilUser'
 import { Link, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
 
 
 export const Header = () => {
