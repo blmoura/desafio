@@ -4,21 +4,35 @@ import perfilImg from '../../assets/perfil.png'
 
 import { Container, Content } from './styles'
 import { PerfilUser } from '../PerfilUser'
+import { Link, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+
 
 export const Header = () => {
-  return (
-    <Container>
-      <Content>
-        <a href="/" className="container-logo">
-          <span>Insight</span>
-          <img src={logoImg} alt="Insight" />
-        </a>
-        <PerfilUser perfilImg={perfilImg} />
-        <a href="/create" className="container-create-insight">
-          <span>Criar insight</span>
-          <img src={plusImg} alt="Criar Insight" />
-        </a>
-      </Content>
-    </Container>
-  )
+  let location = useLocation()
+  
+  if(location.pathname === '/')
+    return (
+      <Container>
+        <Content>
+          <Link to="/" className="container-logo">
+              <span>Insight</span>
+              <img src={logoImg} alt="Insight" />
+          </Link>
+          <PerfilUser perfilImg={perfilImg} />
+          <Link to="/create" className="container-create-insight">
+            <span>Criar insight</span>
+            <img src={plusImg} alt="Criar Insight" />
+          </Link>
+        </Content>
+      </Container>
+    )
+  
+  else
+    return (
+      <Container>
+        <Content>          
+        </Content>
+      </Container>
+    )
 }

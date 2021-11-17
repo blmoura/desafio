@@ -21,7 +21,7 @@ export const FeedInsight = () => {
   useEffect(() => {
     api.get('/insights')
       .then(response => setInsights(response.data))
-      .catch(error => console.log('Ocorreu um erro ' + error))
+      .catch(error => setError(error))
   }, [])
 
   return (
