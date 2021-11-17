@@ -9,18 +9,23 @@ export const Container = styled.li`
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
   font-weight: 500;  
 
-  span:first-child {
+  .text-card {
     display: block;
+    margin-bottom: 24px;
   }
 
   .tag {
-    display: inline-block;
-    margin-top: 24px;
+    display: inline-block;    
     padding: 8px;
+    margin: 4px;
     border-radius: 4px;
     border: 1px solid var(--pink);
     color: var(--pink);
     font-weight: 700;
+
+    & + .tag {
+      margin-left: 6px;
+    }
   }
 
   & + li {
