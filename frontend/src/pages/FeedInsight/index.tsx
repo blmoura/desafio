@@ -1,34 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import { api } from '../../api'
+import { useEffect, useState } from 'react'
 import { CardInsight } from '../../components/CardInsight'
+import useInsights from '../../hooks/useInsights'
 import { Container } from './styles'
-
-interface IInsight {
-  id: string
-  text: string
-  tags?: ITags[]
-}
-
-interface ITags {
-  id: string
-  name: string
-}
+import loadingPaginationInsightImg from '../../assets/loadingInsight.svg'
 
 export const FeedInsight = () => {
-  const [insights, setInsights] = useState<IInsight[]>([])
-  const [error, setError] = useState(null)
+  const [paginate, setPaginate] = useState(3)
+  const { insights, getInsights } = useInsights(paginate)
 
   useEffect(() => {
-    api.get('/insights')
-      .then(response => setInsights(response.data))
-      .catch(error => setError(error))
-  }, [])
+    getInsights()
+  }, [paginate])
 
-  return (
+  return (    
     <Container>
       <h1>Feed de Insights</h1>
       <ul>
-        {insights && insights.map(insight => (
+        {insights && insights.data?.map(insight => (
           <CardInsight 
             key={insight.id}
             text={insight.text}
@@ -36,6 +24,12 @@ export const FeedInsight = () => {
           />
         ))}
       </ul>
+
+      {insights && insights.count > paginate && <button onClick={() => setPaginate(paginate + 1)}>
+        <img src={loadingPaginationInsightImg} alt="Paginação Insight" />
+        Toque para exibir mais insights
+      </button>}
+      
     </Container>
   )
 }
