@@ -1,6 +1,6 @@
-import { IInsightsRepository, IPaginateInsight } from '../../../repositories/IInsightsRepository'
+import { IInsightsRepository, IPaginate, IPaginateInsight } from '../../../repositories/IInsightsRepository'
 import { Insight } from '../entities/Insight'
-import { getRepository, Repository } from 'typeorm'
+import { getRepository, Like, Repository } from 'typeorm'
 import { ICreateInsightDTO } from '../../../dtos/ICreateInsightDTO'
 
 class InsightsRepository implements IInsightsRepository {
@@ -8,6 +8,14 @@ class InsightsRepository implements IInsightsRepository {
 
   constructor () {
     this.ormRepository = getRepository(Insight)
+  }
+
+  async findByTerm (name: string): Promise<Insight[]> {
+    const insights = await this.ormRepository.find({
+      text: Like('%' + name + '%')
+    })
+
+    return insights
   }
 
   async delete (id: string): Promise<void> {
@@ -26,7 +34,7 @@ class InsightsRepository implements IInsightsRepository {
     return insight
   }
 
-  async findAll ({ take, skip }): Promise<IPaginateInsight<Insight>> {
+  async findAll ({ take, skip }: IPaginate): Promise<IPaginateInsight<Insight>> {
     const [result, total] = await this.ormRepository.findAndCount({
       order: { created_at: 'ASC' },
       take: take || 3,

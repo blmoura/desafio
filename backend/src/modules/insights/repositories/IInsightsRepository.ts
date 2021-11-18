@@ -6,7 +6,7 @@ export interface IPaginateInsight<T = any> {
   data: T[]
 }
 
-interface IPaginate {
+export interface IPaginate {
   take?: number
   skip?: number
 }
@@ -15,6 +15,7 @@ export interface IInsightsRepository {
   create: ({ text, tags }: ICreateInsightDTO) => Promise<Insight>
   findAll: ({ take, skip }: IPaginate) => Promise<IPaginateInsight>
   findById: (id: string) => Promise<Insight>
+  findByTerm: (name: string) => Promise<Insight[]>
   update: ({ id, text, tags, created_at, updated_at }: Insight) => Promise<Insight>
   delete: (id: string) => Promise<void>
 }

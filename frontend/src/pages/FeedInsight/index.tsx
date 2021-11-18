@@ -5,10 +5,27 @@ import { Container, ContainerSearch } from './styles'
 import loadingPaginationInsightImg from '../../assets/loadingInsight.svg'
 import { Input } from '../../components/Form/Input'
 import { MdSearch } from 'react-icons/md'
+import { api } from '../../api'
+
+interface IFindInsight {
+  id: string
+  text: string
+  tags: ITag[]
+  created_at: Date
+  updated_at: Date
+}
+
+interface ITag {
+  id: string
+  name: string
+  created_at: Date
+  updated_at: Date
+}
 
 export const FeedInsight = () => {
   const [paginate, setPaginate] = useState(3)
   const [textSearch, setTextSearch] = useState('') 
+  const [findInsight, setFindInsight] = useState<IFindInsight[]>([])
   const { insights, getInsights } = useInsights(paginate)
 
   useEffect(() => {
@@ -18,14 +35,24 @@ export const FeedInsight = () => {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    console.log(textSearch)
+    api.get(`/insights/terms?name=${textSearch}`)
+      .then(response => setFindInsight(response.data))
   }
 
+  
   return (    
     <Container>
       <h1>Feed de Insights</h1>
       <ul>
-        {insights && insights.data?.map(insight => (
+        {(findInsight.length === 0 || !textSearch) && insights && insights.data?.map(insight => (
+          <CardInsight 
+            key={insight.id}
+            text={insight.text}
+            tags={insight.tags}
+          />
+        ))}
+
+        {findInsight && findInsight.map(insight => (
           <CardInsight 
             key={insight.id}
             text={insight.text}
@@ -35,7 +62,8 @@ export const FeedInsight = () => {
       </ul>
 
       {
-        insights 
+        (findInsight.length === 0 || !textSearch)
+        && insights 
         && insights.count > paginate 
         && <button onClick={() => setPaginate(paginate + 1)}>
         <img src={loadingPaginationInsightImg} alt="Paginação Insight" />
@@ -47,7 +75,7 @@ export const FeedInsight = () => {
         <form onSubmit={handleSubmit}>
           <Input
             value={textSearch}
-            onChange={({target}: any) => setTextSearch(target.value)}
+            onChange={({target}: any) => setTextSearch(target.value)}   
           />
           <button>
             <span>Enviar</span>
