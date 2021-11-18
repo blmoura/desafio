@@ -1,4 +1,4 @@
-import { IInsightsRepository } from '../../../repositories/IInsightsRepository'
+import { IInsightsRepository, IPaginateInsight } from '../../../repositories/IInsightsRepository'
 import { Insight } from '../entities/Insight'
 import { getRepository, Repository } from 'typeorm'
 import { ICreateInsightDTO } from '../../../dtos/ICreateInsightDTO'
@@ -26,9 +26,17 @@ class InsightsRepository implements IInsightsRepository {
     return insight
   }
 
-  async findAll (): Promise<Insight[]> {
-    const insights = await this.ormRepository.find()
-    return insights
+  async findAll ({ take, skip }): Promise<IPaginateInsight<Insight>> {
+    const [result, total] = await this.ormRepository.findAndCount({
+      order: { created_at: 'ASC' },
+      take: take || 3,
+      skip: skip || 0
+    })
+
+    return {
+      data: result,
+      count: total
+    }
   }
 
   async create ({ text, tags }: ICreateInsightDTO): Promise<Insight> {
