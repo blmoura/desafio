@@ -1,16 +1,25 @@
-import { useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { CardInsight } from '../../components/CardInsight'
 import useInsights from '../../hooks/useInsights'
-import { Container } from './styles'
+import { Container, ContainerSearch } from './styles'
 import loadingPaginationInsightImg from '../../assets/loadingInsight.svg'
+import { Input } from '../../components/Form/Input'
+import { MdSearch } from 'react-icons/md'
 
 export const FeedInsight = () => {
   const [paginate, setPaginate] = useState(3)
+  const [textSearch, setTextSearch] = useState('') 
   const { insights, getInsights } = useInsights(paginate)
 
   useEffect(() => {
     getInsights()
   }, [paginate])
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    console.log(textSearch)
+  }
 
   return (    
     <Container>
@@ -25,10 +34,27 @@ export const FeedInsight = () => {
         ))}
       </ul>
 
-      {insights && insights.count > paginate && <button onClick={() => setPaginate(paginate + 1)}>
+      {
+        insights 
+        && insights.count > paginate 
+        && <button onClick={() => setPaginate(paginate + 1)}>
         <img src={loadingPaginationInsightImg} alt="Paginação Insight" />
         Toque para exibir mais insights
-      </button>}
+      </button>
+      }
+
+      <ContainerSearch>
+        <form onSubmit={handleSubmit}>
+          <Input
+            value={textSearch}
+            onChange={({target}: any) => setTextSearch(target.value)}
+          />
+          <button>
+            <span>Enviar</span>
+            <MdSearch size={24} color='#666' />
+          </button>
+        </form>
+      </ContainerSearch>
       
     </Container>
   )
