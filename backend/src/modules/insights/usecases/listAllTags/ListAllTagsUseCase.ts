@@ -1,10 +1,14 @@
-import { ITagsRepository } from 'modules/insights/repositories/ITagsRepository'
-import { Tag } from '../../infra/typeorm/entities/Tag'
+import { IPaginateTag, ITagsRepository } from '../../repositories/ITagsRepository'
+
+interface IRequest {
+  skip?: number
+  take?: number
+}
 
 class ListAllTagsUseCase {
   constructor (private readonly tagRepository: ITagsRepository) {}
-  async execute (): Promise<Tag[]> {
-    const tags = await this.tagRepository.listAll()
+  async execute ({ skip, take }: IRequest): Promise<IPaginateTag> {
+    const tags = await this.tagRepository.listAll({ skip, take })
     return tags
   }
 }

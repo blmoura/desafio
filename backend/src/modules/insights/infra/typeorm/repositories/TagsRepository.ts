@@ -1,5 +1,5 @@
 import { ICreateTagDTO } from '../../../dtos/ICreateTagDTO'
-import { ITagsRepository } from '../../../repositories/ITagsRepository'
+import { IPaginateTag, ITagsRepository } from '../../../repositories/ITagsRepository'
 import { getRepository, Repository } from 'typeorm'
 import { Tag } from '../entities/Tag'
 
@@ -30,9 +30,17 @@ class TagsRepository implements ITagsRepository {
     return tag
   }
 
-  async listAll (): Promise<Tag[]> {
-    const tags = await this.ormRepository.find()
-    return tags
+  async listAll ({ take, skip }): Promise<IPaginateTag<Tag>> {
+    const [result, total] = await this.ormRepository.findAndCount({
+      order: { created_at: 'ASC' },
+      take: take || 3,
+      skip: skip || 0
+    })
+
+    return {
+      count: total,
+      data: result
+    }
   }
 
   async findByName (name: string): Promise<Tag> {
