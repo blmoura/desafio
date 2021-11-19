@@ -4,7 +4,7 @@ import useInsights from '../../hooks/useInsights'
 import { Container, ContainerSearch } from './styles'
 import loadingPaginationInsightImg from '../../assets/loadingInsight.svg'
 import { Input } from '../../components/Form/Input'
-import { MdSearch } from 'react-icons/md'
+import { MdSearch, MdWarning } from 'react-icons/md'
 import { api } from '../../api'
 import { IFindInsight } from './interfaces'
 
@@ -29,6 +29,16 @@ export const FeedInsight = () => {
     <Container>
       <h1>Feed de Insights</h1>
       <ul>
+        {findInsight.length === 0 && (
+          <li className="insight-not-found">
+            Nenhum insight cadastrado 
+            <MdWarning 
+              size="1.4rem"
+              color="#48144f"
+            />
+          </li>
+        )}
+
         {(findInsight.length === 0 || !textSearch) && insights && insights.data?.map(insight => (
           <CardInsight 
             key={insight.id}
