@@ -20,11 +20,9 @@ export const CreateInsight = () => {
 
     api.post('/insights', { text: textInsight })
       .then(response => {
-        if(response.status === 201) {
-          setTimeout(() => {
-            setLoading(false)
-            navigate('/')
-          }, 1500)
+        if(response.status === 201) {          
+          setLoading(false)
+          navigate('/')          
         }
       })
   }

@@ -6,31 +6,17 @@ import loadingPaginationInsightImg from '../../assets/loadingInsight.svg'
 import { Input } from '../../components/Form/Input'
 import { MdSearch } from 'react-icons/md'
 import { api } from '../../api'
-
-interface IFindInsight {
-  id: string
-  text: string
-  tags: ITag[]
-  created_at: Date
-  updated_at: Date
-}
-
-interface ITag {
-  id: string
-  name: string
-  created_at: Date
-  updated_at: Date
-}
+import { IFindInsight } from './interfaces'
 
 export const FeedInsight = () => {
-  const [paginate, setPaginate] = useState(3)
+  const [addTotalPage, setAddTotalPage] = useState(3)
   const [textSearch, setTextSearch] = useState('') 
   const [findInsight, setFindInsight] = useState<IFindInsight[]>([])
-  const { insights, getInsights } = useInsights(paginate)
+  const { insights, getInsights } = useInsights(addTotalPage)
 
   useEffect(() => {
     getInsights()
-  }, [paginate])
+  }, [addTotalPage])
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -39,7 +25,6 @@ export const FeedInsight = () => {
       .then(response => setFindInsight(response.data))
   }
 
-  
   return (    
     <Container>
       <h1>Feed de Insights</h1>
@@ -64,8 +49,8 @@ export const FeedInsight = () => {
       {
         (findInsight.length === 0 || !textSearch)
         && insights 
-        && insights.count > paginate 
-        && <button onClick={() => setPaginate(paginate + 1)}>
+        && insights.count > addTotalPage 
+        && <button onClick={() => setAddTotalPage(addTotalPage + 1)}>
         <img src={loadingPaginationInsightImg} alt="Paginação Insight" />
         Toque para exibir mais insights
       </button>
