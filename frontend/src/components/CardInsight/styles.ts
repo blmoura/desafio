@@ -11,7 +11,10 @@ export const Container = styled.li`
 
   .text-card {
     display: block;
-    margin-bottom: 24px;
+    
+    & + .tag {
+      margin-top: 24px;
+    }
   }
 
   .tag {
