@@ -29,16 +29,6 @@ export const FeedInsight = () => {
     <Container>
       <h1>Feed de Insights</h1>
       <ul>
-        {findInsight.length === 0 && (
-          <li className="insight-not-found">
-            Nenhum insight cadastrado 
-            <MdWarning 
-              size="1.4rem"
-              color="#48144f"
-            />
-          </li>
-        )}
-
         {(findInsight.length === 0 || !textSearch) && insights && insights.data?.map(insight => (
           <CardInsight 
             key={insight.id}

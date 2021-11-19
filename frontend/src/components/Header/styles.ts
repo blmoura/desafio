@@ -3,9 +3,8 @@ import backgroundImg from '../../assets/background.svg'
 
 export const Container = styled.header`  
   background: url(${backgroundImg}) no-repeat center;
-  background-position-y: 16%;
+  background-position-y: 30%;
   background-color: var(--purple);
-  background-size: 100%;
   padding: 1.5rem 1rem 3rem;
   position: fixed;
   top: 0;
@@ -46,10 +45,8 @@ export const Content = styled.div`
 `;
 
 export const InfoUser = styled.div`
-  background: url(${backgroundImg}) no-repeat center;
-  background-position-y: 100%;
+  background: url(${backgroundImg}) no-repeat center;  
   background-color: var(--purple);
-  background-size: 100%;
   padding: 9rem 1rem 7rem;  
   display: flex;
   flex-direction: column;
@@ -58,6 +55,18 @@ export const InfoUser = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media(min-width: 1080px) {
+    background-position-y: 185%;
+  }
+
+  @media(max-width: 1080px) {
+    background-position-y: 130%;
+  }
+
+  @media(max-width: 768px) {
+    background-position-y: 100%;
+  }
 
   &::after {
     content: '';

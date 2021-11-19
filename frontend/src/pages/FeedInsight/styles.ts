@@ -14,18 +14,6 @@ export const Container = styled.div`
 
   ul {
     margin-top: 24px;
-
-    .insight-not-found {
-      margin-top: 50px;
-      font-size: 1.5rem;
-      position: relative;
-
-      svg {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    }
   }
 
   button {
