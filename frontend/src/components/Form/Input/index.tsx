@@ -9,7 +9,7 @@ interface IProps {
 export const Input = ({value, onChange}: IProps) => {
   return (
     <Container>
-      <input 
+      <input
         placeholder="Pesquise por termos ou categorias..."
         value={value}
         onChange={onChange}

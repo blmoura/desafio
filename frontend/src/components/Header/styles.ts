@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import backgroundImg from '../../assets/background.svg'
 
-export const Container = styled.header`  
+export const Container = styled.header`
   background: url(${backgroundImg}) no-repeat center;
   background-position-y: 30%;
   background-color: var(--purple);
@@ -19,7 +19,7 @@ export const Content = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  
+
   .container-logo {
     margin-top: 1rem;
     width: 50px;
@@ -45,9 +45,9 @@ export const Content = styled.div`
 `;
 
 export const InfoUser = styled.div`
-  background: url(${backgroundImg}) no-repeat center;  
+  background: url(${backgroundImg}) no-repeat center;
   background-color: var(--purple);
-  padding: 9rem 1rem 7rem;  
+  padding: 9rem 1rem 7rem;
   display: flex;
   flex-direction: column;
   z-index: 1;

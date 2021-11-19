@@ -5,7 +5,7 @@ import { FeedInsight } from "./pages/FeedInsight";
 import { GlobalStyles } from "./styles/global";
 
 function App() {
-  return (  
+  return (
     <BrowserRouter>
       <Header />
       <Routes>
@@ -14,7 +14,7 @@ function App() {
       </Routes>
 
       <GlobalStyles />
-    </BrowserRouter>    
+    </BrowserRouter>
   );
 }
 

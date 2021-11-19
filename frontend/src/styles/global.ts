@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 export const GlobalStyles = createGlobalStyle`
   :root {
     --background: #f4f4f4;
-    
+
     --purple: #48144f;
     --pink: #ED4D77;
 
@@ -52,5 +52,5 @@ export const GlobalStyles = createGlobalStyle`
       font-size: 87.5%;
     }
   }
-  
+
 `;

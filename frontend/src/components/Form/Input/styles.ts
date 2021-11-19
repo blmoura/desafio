@@ -5,7 +5,7 @@ export const Container = styled.div`
   width: 100%;
   height: 56px;
   border-radius: 8px;
-  
+
 
   input {
     display: block;

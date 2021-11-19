@@ -8,11 +8,11 @@ import { Loading } from '../../components/Loading'
 import { Container, ContentForm } from './styles'
 
 export const CreateInsight = () => {
-  const [textInsight, setTextInsight] = useState('') 
+  const [textInsight, setTextInsight] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-  
-  
+
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
@@ -20,13 +20,13 @@ export const CreateInsight = () => {
 
     api.post('/insights', { text: textInsight })
       .then(response => {
-        if(response.status === 201) {          
+        if(response.status === 201) {
           setLoading(false)
-          navigate('/')          
+          navigate('/')
         }
       })
   }
-  
+
   return (
     <Container>
       {loading && <Loading />}
@@ -39,11 +39,11 @@ export const CreateInsight = () => {
       </div>
       <form onSubmit={handleSubmit}>
         <ContentForm>
-          <TextArea 
+          <TextArea
             id="insight-textarea"
             value={textInsight}
             onChange={({ target }: any) => setTextInsight(target.value)}
-          />      
+          />
         </ContentForm>
         <button type="submit">Publicar</button>
       </form>

@@ -47,7 +47,7 @@ export const Container = styled.div`
       & + .group-input {
         margin-top: 24px;
       }
-      
+
       label {
         margin-bottom: 2px;
         font-size: 14px;

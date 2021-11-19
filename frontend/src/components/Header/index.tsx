@@ -8,7 +8,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 export const Header = () => {
   let location = useLocation()
-  
+
   if(location.pathname === '/')
     return (
       <>
@@ -18,9 +18,9 @@ export const Header = () => {
                 <span>Insight</span>
                 <img src={logoImg} alt="Insight" />
             </Link>
-            
-            <img src={perfilImg} alt="Perfil" />          
-            
+
+            <img src={perfilImg} alt="Perfil" />
+
             <Link to="/create" className="container-create-insight">
               <span>Criar insight</span>
               <img src={plusImg} alt="Criar Insight" />
@@ -35,11 +35,11 @@ export const Header = () => {
         </InfoUser>
       </>
     )
-  
+
   else
     return (
       <Container>
-        <Content>          
+        <Content>
         </Content>
       </Container>
     )

@@ -11,8 +11,8 @@ export const TextArea = ({id, value, onChange}: IProps) => {
   return (
     <Container>
       <label htmlFor={id}>Insight</label>
-      <textarea 
-        id={id} 
+      <textarea
+        id={id}
         placeholder="Escreva aqui o seu insight…"
         value={value}
         onChange={onChange}
